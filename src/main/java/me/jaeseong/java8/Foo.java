@@ -2,6 +2,8 @@ package me.jaeseong.java8;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Foo {
 
@@ -47,21 +49,29 @@ public class Foo {
         //자바가 제공하는 함수형 인터페이스 중 자주 사용할만한 함수 인터페이스
         //java.util.function package
 
+        System.out.println("START OF Function구현");
         //Function 구현
         Plus10 plus10 = new Plus10();
         System.out.println(plus10.apply(10));
+        System.out.println("END OF Function구현");
+
 
         //R/T
+        System.out.println("START OF R/T");
         Function<Integer, Integer> plus = integer -> integer + 10;
         System.out.println(plus.apply(10));
         Function<Integer, Integer> muliply = integer -> integer * 2;
         System.out.println(muliply.apply(10));
+        System.out.println("END OF R/T");
+
 
         //조합
+        System.out.println("START OF 조합");
         plus.compose(muliply);
-        System.out.println(plus.apply(0));
+        System.out.println(plus.apply(10));
         plus.andThen(muliply);
         System.out.println(plus.apply(10));
+        System.out.println("END OF 조합");
 
         //T, U, R
         BiFunction<Integer, String, Integer> integerStringIntegerBiFunction = (integer, s) -> {
@@ -90,6 +100,9 @@ public class Foo {
         Function<Integer, String> integerStringFunction = (Integer i) ->{
             return i.toString();
         };
+        Function<Integer, String> integerStringFunction2 = (i) -> i.toString();
+
+
 
         //변수캡처#4
         run();
@@ -112,7 +125,7 @@ public class Foo {
         System.out.println(greeting2.getName() + ": 문자열 생성자 메소드 참조");
 
         //임의의 객체의 인스턴스 메소드 참조
-        String[] name = {"재성", "기선", "희정"};
+        String[] name = {"재성", "기억", "희정"};
         System.out.println(Arrays.toString(name));
         Arrays.sort(name, new Comparator<String>() {
             @Override
@@ -133,13 +146,13 @@ public class Foo {
         JooI.printJaeseong();
 
 
-        //#
+        //람다의 등장으로 변한 API
 
         List<String> nameArr = new ArrayList<>();
         nameArr.add("재성1");
         nameArr.add("재성2");
-        nameArr.add("기선1");
-        nameArr.add("기선2");
+        nameArr.add("하하1");
+        nameArr.add("하하2");
 
         //Iterator
         //메소드 레퍼런스
@@ -166,10 +179,14 @@ public class Foo {
 
 
 
+
+
+
     }
 
     //변수캡처
     private static void run(){
+        System.out.println("START OF 변수캡처");
         int baseNumber = 10;
 
         //final or Effective final 만 사용 가능 (1.8 이전에는 final 만 사용가능했음)
@@ -184,13 +201,18 @@ public class Foo {
             }
         }
 
+        LocalClass localClass = new LocalClass();
+        localClass.printBasenumber();
+
         //익명클래스
         IntConsumer printConsumer = new IntConsumer() {
             @Override
             public void accept(int value) {
+                int baseNumber = 0;
                 System.out.println(baseNumber);
             }
         };
+        printConsumer.accept(10);
 
         //람다
         IntConsumer printConsumer1 = value -> System.out.println(value + baseNumber);
@@ -199,7 +221,6 @@ public class Foo {
         //쉐도잉
         //로컬클래스와 익명클래스는 쉐도잉이 되어서 같은 이름의 변수가 내부에 있으면 가려진다.
         //람다는 쉐도잉이 안되고 감싸는 메서드와 스코프가 같다.
-
+        System.out.println("END OF 변수캡처");
     }
-
 }
