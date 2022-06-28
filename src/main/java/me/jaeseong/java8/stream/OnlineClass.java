@@ -1,5 +1,9 @@
 package me.jaeseong.java8.stream;
 
+import me.jaeseong.java8.optional.Progress;
+
+import java.util.Optional;
+
 public class OnlineClass {
 
     private Integer id;
@@ -7,6 +11,16 @@ public class OnlineClass {
     private String title;
 
     private boolean closed;
+
+    private Progress progress;
+
+    public Optional<Progress> getProgress() {
+        return Optional.ofNullable(progress);
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
 
     public OnlineClass(Integer id, String title, boolean closed) {
         this.id = id;

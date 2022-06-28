@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 //@Target(ElementType.TYPE_PARAMETER)
 @Target(ElementType.TYPE_USE)
-@Repeatable()
-public @interface Jaeseong {
-
+@Repeatable(IAnnotationExContainer.class)
+public @interface IAnnotationEx {
+    String value();
 }

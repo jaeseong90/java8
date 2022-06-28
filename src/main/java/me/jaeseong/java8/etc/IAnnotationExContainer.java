@@ -1,4 +1,12 @@
 package me.jaeseong.java8.etc;
 
-public @interface JaeseongContainer {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE_USE)
+public @interface IAnnotationExContainer {
+    IAnnotationEx[] value();
 }

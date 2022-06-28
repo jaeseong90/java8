@@ -1,6 +1,6 @@
 package me.jaeseong.java8.completablefuture;
 
-public class completablefutureEx {
+public class ThreadEx {
 
     public static void main(String[] args) throws InterruptedException{
 
